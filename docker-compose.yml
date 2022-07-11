@@ -1,0 +1,26 @@
+version: '3'
+
+services:
+  strapi:
+    build: 
+      context: ./
+      dockerfile: dev.Dockerfile
+    ports:
+      - 1337:1337
+    volumes:
+      - .:/app
+      - /app/node_modules
+    depends_on:
+      - db
+
+  db:
+    image: postgres:14.4
+    environment: 
+      - POSTGRES_DB=strapi
+      - POSTGRES_PASSWORD=strapi
+    volumes:
+      - ./db:/docker-entrypoint-initdb.d/
+    ports:
+      - 5432:5432
+    networks:
+      - default

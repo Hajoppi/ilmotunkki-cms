@@ -1,0 +1,28 @@
+{
+  "collectionName": "components_common_contact_forms",
+  "info": {
+    "displayName": "Contact form",
+    "icon": "address-card"
+  },
+  "options": {},
+  "attributes": {
+    "firstName": {
+      "type": "string"
+    },
+    "lastName": {
+      "type": "string"
+    },
+    "email": {
+      "type": "string"
+    },
+    "phone": {
+      "type": "string"
+    },
+    "startYear": {
+      "type": "string"
+    },
+    "extra": {
+      "type": "string"
+    }
+  }
+}

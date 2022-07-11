@@ -1,0 +1,69 @@
+/**
+ *  item controller
+ */
+
+import { factories } from '@strapi/strapi'
+
+export default factories.createCoreController('api::item.item',({strapi}) => ({
+  async count(ctx) {
+    const entries = await strapi.query('api::item.item').count({
+      where: {
+        $not: {
+          itemType: {
+            $or: [
+              {name: 'Vieras'},
+              {name: 'Guest'},
+            ]
+          }
+        },
+      }
+    });
+    ctx.body = entries;
+  },
+  async create(ctx) {
+    const {data: {itemType, order: orderId}} = ctx.request.body;
+    const category = await strapi.query('api::item-category.item-category').findOne({
+      where: {
+        itemTypes: {
+          id: itemType
+        }
+      },
+      populate: {
+        overflowItem: true,
+      },
+    });
+    const totalCategoryItemCount = await strapi.query('api::item.item').count({
+      where: {
+        itemType: {
+          itemCategory: {
+            id: category.id
+          }
+        }
+      },
+    });
+    const orderCategoryItemCount = await strapi.query('api::item.item').count({
+      where: {
+        order: {
+          id: orderId
+        },
+        itemType: {
+          itemCategory: {
+            id: category.id
+          }
+        }
+      }
+    });
+    if(orderCategoryItemCount + 1 > category.orderItemLimit) {
+      return ctx.badRequest('Too many items in this order');
+    }
+    if(totalCategoryItemCount + 1 > category.maximumItemLimit) {
+      if(!category.overflowItem) {
+        return ctx.badRequest('Items have run out');
+      }
+      ctx.request.body.data.itemType = category.overflowItem.id;
+    }
+    const { data, meta } = await super.create(ctx);
+
+    return { data, meta }
+  }
+}));
