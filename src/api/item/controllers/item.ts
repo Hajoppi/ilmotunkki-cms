@@ -21,7 +21,16 @@ export default factories.createCoreController('api::item.item',({strapi}) => ({
     ctx.body = entries;
   },
   async create(ctx) {
-    const {data: {itemType, order: orderId}} = ctx.request.body;
+    const {data: {itemType, order: orderUid}} = ctx.request.body;
+    const order = await strapi.query('api::order.order').findOne({
+      where: {
+        uid: orderUid,
+      }
+    });
+    if(!order) {
+      return ctx.notFound('No order');
+    }
+    const orderId = order.id;
     const category = await strapi.query('api::item-category.item-category').findOne({
       where: {
         itemTypes: {
@@ -62,8 +71,19 @@ export default factories.createCoreController('api::item.item',({strapi}) => ({
       }
       ctx.request.body.data.itemType = category.overflowItem.id;
     }
-    const { data, meta } = await super.create(ctx);
-
-    return { data, meta }
+    const result = await strapi.query('api::item.item').create({
+      data: {
+        itemType,
+        order: orderId,
+      },
+      populate: {
+        itemType: {
+          populate: {
+            itemCategory: true,
+          }
+        }
+      }
+    });
+    return this.transformResponse(result);
   }
 }));
