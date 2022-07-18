@@ -38,6 +38,10 @@
       "relation": "oneToMany",
       "target": "api::order.order",
       "mappedBy": "customer"
+    },
+    "uid": {
+      "type": "uid",
+      "required": false
     }
   }
 }

@@ -20,6 +20,21 @@ export default factories.createCoreController('api::item.item',({strapi}) => ({
     });
     ctx.body = entries;
   },
+  async delete(ctx) {
+    const {orderUid} = ctx.request.query;
+    const order = await strapi.query('api::order.order').findOne({
+      where: {
+        uid: orderUid,
+      }
+    });
+    if(!order) {
+      return ctx.notFound('No order');
+    }
+    if(order.status === 'ok') {
+      return ctx.badRequest('Order already done');
+    }
+    return await super.delete(ctx);
+  },
   async create(ctx) {
     const {data: {itemType, order: orderUid}} = ctx.request.body;
     const order = await strapi.query('api::order.order').findOne({
@@ -29,6 +44,9 @@ export default factories.createCoreController('api::item.item',({strapi}) => ({
     });
     if(!order) {
       return ctx.notFound('No order');
+    }
+    if(order.status === 'ok') {
+      return ctx.badRequest('Order already done');
     }
     const orderId = order.id;
     const category = await strapi.query('api::item-category.item-category').findOne({

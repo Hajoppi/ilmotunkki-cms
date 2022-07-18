@@ -15,4 +15,16 @@ export default factories.createCoreController('api::customer.customer',{
     });
     return this.transformResponse(result);
   },
+  async update(ctx) {
+    const {id} = ctx.request.params;
+    const {data} = ctx.request.body;
+    console.log(ctx, id);
+    const result = await strapi.query('api::customer.customer').update({
+      where: {
+        uid: id,
+      },
+      data
+    });
+    return this.transformResponse(result);
+  }
 });
