@@ -1,0 +1,23 @@
+{
+  "collectionName": "components_contact_form_form_fields",
+  "info": {
+    "displayName": "FormField",
+    "icon": "align-left"
+  },
+  "options": {},
+  "attributes": {
+    "label": {
+      "type": "string"
+    },
+    "type": {
+      "type": "string"
+    },
+    "required": {
+      "type": "boolean",
+      "default": false
+    },
+    "fieldName": {
+      "type": "string"
+    }
+  }
+}

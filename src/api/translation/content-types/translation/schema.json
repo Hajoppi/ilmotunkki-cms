@@ -4,7 +4,8 @@
   "info": {
     "singularName": "translation",
     "pluralName": "translations",
-    "displayName": "Translation"
+    "displayName": "Translation",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -14,16 +15,5 @@
       "localized": true
     }
   },
-  "attributes": {
-    "contactForm": {
-      "type": "component",
-      "repeatable": true,
-      "component": "common.contact-form",
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      }
-    }
-  }
+  "attributes": {}
 }
