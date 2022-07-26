@@ -36,7 +36,8 @@ export default factories.createCoreController('api::item.item',({strapi}) => ({
     return await super.delete(ctx);
   },
   async create(ctx) {
-    const {data: {itemType, order: orderUid}} = ctx.request.body;
+    let {data: {itemType}} = ctx.request.body;
+    const  {data: {order: orderUid}} = ctx.request.body;
     const order = await strapi.query('api::order.order').findOne({
       where: {
         uid: orderUid,
@@ -87,7 +88,7 @@ export default factories.createCoreController('api::item.item',({strapi}) => ({
       if(!category.overflowItem) {
         return ctx.badRequest('Items have run out');
       }
-      ctx.request.body.data.itemType = category.overflowItem.id;
+      itemType = category.overflowItem.id;
     }
     const result = await strapi.query('api::item.item').create({
       data: {
