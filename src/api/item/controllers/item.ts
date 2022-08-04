@@ -5,23 +5,8 @@
 import { factories } from '@strapi/strapi'
 
 export default factories.createCoreController('api::item.item',({strapi}) => ({
-  async count(ctx) {
-    const entries = await strapi.query('api::item.item').count({
-      where: {
-        $not: {
-          itemType: {
-            $or: [
-              {name: 'Vieras'},
-              {name: 'Guest'},
-            ]
-          }
-        },
-      }
-    });
-    ctx.body = entries;
-  },
   async delete(ctx) {
-    const {orderUid} = ctx.request.query;
+    const { orderUid } = ctx.request.query;
     const order = await strapi.query('api::order.order').findOne({
       where: {
         uid: orderUid,
@@ -81,14 +66,15 @@ export default factories.createCoreController('api::item.item',({strapi}) => ({
         }
       }
     });
-    if(orderCategoryItemCount + 1 > category.orderItemLimit) {
-      return ctx.badRequest('Too many items in this order');
-    }
     if(totalCategoryItemCount + 1 > category.maximumItemLimit) {
       if(!category.overflowItem) {
         return ctx.badRequest('Items have run out');
       }
       itemType = category.overflowItem.id;
+    }
+    if(orderCategoryItemCount + 1 > category.orderItemLimit) {
+      return this.transformResponse({});
+      // return ctx.badRequest('Too many items in this order');
     }
     const result = await strapi.query('api::item.item').create({
       data: {
@@ -104,5 +90,24 @@ export default factories.createCoreController('api::item.item',({strapi}) => ({
       }
     });
     return this.transformResponse(result);
+  },
+  async find(ctx) {
+    const { orderUid } = ctx.request.query;
+    const entities = await strapi.query('api::item.item').findMany({
+      where: {
+        order: {
+          uid: orderUid,
+        },
+      },
+      populate: {
+        itemType: {
+          populate: {
+            itemCategory: true,
+          }
+        },
+        giftCard: true,
+      }
+    });
+    return this.transformResponse(entities);
   }
 }));

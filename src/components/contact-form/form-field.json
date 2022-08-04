@@ -2,14 +2,12 @@
   "collectionName": "components_contact_form_form_fields",
   "info": {
     "displayName": "FormField",
-    "icon": "align-left"
+    "icon": "align-left",
+    "description": ""
   },
   "options": {},
   "attributes": {
     "label": {
-      "type": "string"
-    },
-    "type": {
       "type": "string"
     },
     "required": {
@@ -18,6 +16,15 @@
     },
     "fieldName": {
       "type": "string"
+    },
+    "type": {
+      "type": "enumeration",
+      "enum": [
+        "text",
+        "email",
+        "number",
+        "checkbox"
+      ]
     }
   }
 }

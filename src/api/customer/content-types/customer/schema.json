@@ -42,6 +42,9 @@
     "uid": {
       "type": "uid",
       "required": false
+    },
+    "accept": {
+      "type": "boolean"
     }
   }
 }
