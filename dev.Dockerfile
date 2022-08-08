@@ -4,7 +4,8 @@ RUN apt-get update && apt-get install libvips-dev -y
 ARG NODE_ENV=development
 ENV NODE_ENV=${NODE_ENV}
 WORKDIR /app
-COPY ./package.json ./yarn.lock ./
+COPY ./package.json .
+COPY ./yarn.lock .
 
 ENV PATH /app/node_modules/.bin:$PATH
 

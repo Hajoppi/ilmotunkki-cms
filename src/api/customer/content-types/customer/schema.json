@@ -45,6 +45,13 @@
     },
     "accept": {
       "type": "boolean"
+    },
+    "locale": {
+      "type": "enumeration",
+      "enum": [
+        "fi",
+        "en"
+      ]
     }
   }
 }
