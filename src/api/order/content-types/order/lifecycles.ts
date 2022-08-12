@@ -1,6 +1,6 @@
 import Mail from 'nodemailer/lib/mailer';
+import SMTPPool from 'nodemailer/lib/smtp-pool';
 import {v4} from 'uuid';
-import { ApiCustomerCustomer, ApiEmailTemplateEmailTemplate, ApiOrderOrder } from '../../../../../schemas';
 type Event = {
   model: any,
   params: {
@@ -14,7 +14,25 @@ type Event = {
   }
   result: any,
 }
+type Field = {
+  id: number,
+  label: string
+  type: string
+  required: boolean,
+  fieldName: string,
+}
 
+const fillTemplatePatterns = (text: string, form: Field[], data: Record<string,string>) => {
+  form.forEach(field => {
+    const regex = new RegExp(`{{${field.fieldName}}}`,'g')
+    text = text.replace(regex,`${data[field.fieldName]}`)
+  });
+  return text;
+}
+
+type EmailService = {
+  create: (options: Mail.Options) => Promise<SMTPPool.SentMessageInfo>;
+}
 
 export default {
   beforeCreate(event: Event) {
@@ -32,18 +50,34 @@ export default {
         }
       }
     });
-    const template = await strapi.query('api::email.email').findOne({
-      where: {
-        type: 'confirmation',
-        locale: customer.locale,
-      }
-    });
+    const [template, form] = await Promise.all([
+      strapi.query('api::email.email').findOne({
+        where: {
+          type: 'confirmation',
+          locale: customer.locale,
+        }
+      }),
+      strapi.query('api::contact-form.contact-form').findOne({
+        where: {
+          locale: customer.locale,
+        },
+        populate: {
+          contactForm: true
+        }
+      })
+    ])
+    const text = fillTemplatePatterns(template.text, form.contactForm, customer);
+
     const mailOptions: Mail.Options = {
       to: customer.email,
       from: 'm0@tietokilta.fi',
       subject: template.subject,
-      text: template.text,
+      text: text,
     }
-    strapi.service<{create: (options: Mail.Options) => void}>('api::email.email').create(mailOptions);
+    try {
+      await strapi.service<EmailService>('api::email.email').create(mailOptions);
+    } catch(error) {
+      console.error(`Order id: ${order.id} had an issue sending the email`);
+    }
   }
 }
