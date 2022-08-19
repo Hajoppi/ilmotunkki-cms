@@ -12,8 +12,6 @@ type Data = {
 }
 export default factories.createCoreController('api::item-category.item-category', {
   async findOne(ctx) {
-    console.log(ctx.params);
-    console.log(ctx.query);
     const { data, meta } = await super.findOne(ctx);
     const totalCategoryItemCount = await strapi.query('api::item.item').count({
       where: {
