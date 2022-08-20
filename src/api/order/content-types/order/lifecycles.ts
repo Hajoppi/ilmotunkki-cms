@@ -3,6 +3,8 @@ import SMTPPool from 'nodemailer/lib/smtp-pool';
 import {v4} from 'uuid';
 type Event = {
   model: any,
+  where: any,
+  data: any,
   params: {
     data: any
     select: any
@@ -22,12 +24,53 @@ type Field = {
   fieldName: string,
 }
 
+
 const fillTemplatePatterns = (text: string, form: Field[], data: Record<string,string>) => {
   form.forEach(field => {
     const regex = new RegExp(`{{${field.fieldName}}}`,'g')
     text = text.replace(regex,`${data[field.fieldName]}`)
   });
   return text;
+};
+
+const sendConfirmationEmail = async (order: any) => {
+  const customer = await strapi.query('api::customer.customer').findOne({
+    where: {
+      orders: {
+        id: order.id,
+      }
+    }
+  });
+  const [template, form] = await Promise.all([
+    strapi.query('api::email.email').findOne({
+      where: {
+        type: 'confirmation',
+        locale: customer.locale,
+      }
+    }),
+    strapi.query('api::contact-form.contact-form').findOne({
+      where: {
+        locale: customer.locale,
+      },
+      populate: {
+        contactForm: true
+      }
+    })
+  ])
+  console.log(template,form);
+  const text = fillTemplatePatterns(template.text, form.contactForm, customer);
+
+  const mailOptions: Mail.Options = {
+    to: customer.email,
+    from: 'm0@tietokilta.fi',
+    subject: template.subject,
+    text: text,
+  }
+  try {
+    await strapi.service<EmailService>('api::email.email').create(mailOptions);
+  } catch(error) {
+    console.error(`Order id: ${order.id} had an issue sending the email`);
+  }
 }
 
 type EmailService = {
@@ -40,44 +83,15 @@ export default {
     data.status = 'new'
     data.uid = v4();
   },
-  async afterUpdate(event: Event) {
-    const order = event.result;
-    if(order.status !== 'ok') return;
-    const customer = await strapi.query('api::customer.customer').findOne({
+  async beforeUpdate(event: Event) {
+    const {where: {id}, data} = event.params;
+    const order = await strapi.query('api::order.order').findOne({
       where: {
-        orders: {
-          id: order.id,
-        }
+        id,
       }
     });
-    const [template, form] = await Promise.all([
-      strapi.query('api::email.email').findOne({
-        where: {
-          type: 'confirmation',
-          locale: customer.locale,
-        }
-      }),
-      strapi.query('api::contact-form.contact-form').findOne({
-        where: {
-          locale: customer.locale,
-        },
-        populate: {
-          contactForm: true
-        }
-      })
-    ])
-    const text = fillTemplatePatterns(template.text, form.contactForm, customer);
-
-    const mailOptions: Mail.Options = {
-      to: customer.email,
-      from: 'm0@tietokilta.fi',
-      subject: template.subject,
-      text: text,
+    if(order.status !== 'ok' && data.status === 'ok') {
+      sendConfirmationEmail(order);
     }
-    try {
-      await strapi.service<EmailService>('api::email.email').create(mailOptions);
-    } catch(error) {
-      console.error(`Order id: ${order.id} had an issue sending the email`);
-    }
-  }
+  },
 }
