@@ -4,6 +4,9 @@
   "type": "authenticated",
   "permissions": [
     {
+      "action": "api::callback-page.callback-page.find"
+    },
+    {
       "action": "api::contact-form.contact-form.find"
     },
     {

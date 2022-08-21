@@ -57,7 +57,6 @@ const sendConfirmationEmail = async (order: any) => {
       }
     })
   ])
-  console.log(template,form);
   const text = fillTemplatePatterns(template.text, form.contactForm, customer);
 
   const mailOptions: Mail.Options = {

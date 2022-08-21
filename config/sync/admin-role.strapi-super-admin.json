@@ -5,6 +5,65 @@
   "permissions": [
     {
       "action": "plugin::content-manager.explorer.create",
+      "subject": "api::callback-page.callback-page",
+      "properties": {
+        "fields": [
+          "onSuccess",
+          "onCancel",
+          "onError"
+        ],
+        "locales": [
+          "en",
+          "fi"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.delete",
+      "subject": "api::callback-page.callback-page",
+      "properties": {
+        "locales": [
+          "en",
+          "fi"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.read",
+      "subject": "api::callback-page.callback-page",
+      "properties": {
+        "fields": [
+          "onSuccess",
+          "onCancel",
+          "onError"
+        ],
+        "locales": [
+          "en",
+          "fi"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.update",
+      "subject": "api::callback-page.callback-page",
+      "properties": {
+        "fields": [
+          "onSuccess",
+          "onCancel",
+          "onError"
+        ],
+        "locales": [
+          "en",
+          "fi"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.create",
       "subject": "api::contact-form.contact-form",
       "properties": {
         "fields": [
@@ -481,6 +540,62 @@
           "customer",
           "items",
           "uid"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.create",
+      "subject": "api::translation.translation",
+      "properties": {
+        "fields": [
+          "translations.key",
+          "translations.value"
+        ],
+        "locales": [
+          "en",
+          "fi"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.delete",
+      "subject": "api::translation.translation",
+      "properties": {
+        "locales": [
+          "en",
+          "fi"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.read",
+      "subject": "api::translation.translation",
+      "properties": {
+        "fields": [
+          "translations.key",
+          "translations.value"
+        ],
+        "locales": [
+          "en",
+          "fi"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.update",
+      "subject": "api::translation.translation",
+      "properties": {
+        "fields": [
+          "translations.key",
+          "translations.value"
+        ],
+        "locales": [
+          "en",
+          "fi"
         ]
       },
       "conditions": []

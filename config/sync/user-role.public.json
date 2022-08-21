@@ -49,6 +49,9 @@
       "action": "api::order.order.findByUid"
     },
     {
+      "action": "api::translation.translation.find"
+    },
+    {
       "action": "plugin::users-permissions.auth.callback"
     },
     {

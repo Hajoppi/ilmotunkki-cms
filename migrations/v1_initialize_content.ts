@@ -87,7 +87,7 @@ module.exports =  async () => {
       text: 'Hi, well done because you signed up',
       type: 'confirmation',
       locale: 'en',
-      localizations: [confirmationEmailFi]
+      localizations: [confirmationEmailFi.id]
     },
   });
   await strapi.query('api::email.email').update({
@@ -98,7 +98,7 @@ module.exports =  async () => {
       localizations: [confirmationEmailEn.id],
     },
     populate: ['localizations'],
-  })
+  });
   
   const itemType1 = await strapi.entityService.create('api::item-type.item-type', {
     data: {

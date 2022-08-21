@@ -1,7 +1,7 @@
 {
-  "key": "plugin_content_manager_configuration_content_types::api::item-type.item-type",
+  "key": "plugin_content_manager_configuration_content_types::api::callback-page.callback-page",
   "value": {
-    "uid": "api::item-type.item-type",
+    "uid": "api::callback-page.callback-page",
     "settings": {
       "bulkable": true,
       "filterable": true,
@@ -20,75 +20,46 @@
           "sortable": true
         }
       },
-      "price": {
+      "onSuccess": {
         "edit": {
-          "label": "price",
+          "label": "onSuccess",
           "description": "",
           "placeholder": "",
           "visible": true,
           "editable": true
         },
         "list": {
-          "label": "price",
-          "searchable": true,
-          "sortable": true
+          "label": "onSuccess",
+          "searchable": false,
+          "sortable": false
         }
       },
-      "availableFrom": {
+      "onCancel": {
         "edit": {
-          "label": "availableFrom",
+          "label": "onCancel",
           "description": "",
           "placeholder": "",
           "visible": true,
           "editable": true
         },
         "list": {
-          "label": "availableFrom",
-          "searchable": true,
-          "sortable": true
+          "label": "onCancel",
+          "searchable": false,
+          "sortable": false
         }
       },
-      "availableTo": {
+      "onError": {
         "edit": {
-          "label": "availableTo",
+          "label": "onError",
           "description": "",
           "placeholder": "",
           "visible": true,
           "editable": true
         },
         "list": {
-          "label": "availableTo",
-          "searchable": true,
-          "sortable": true
-        }
-      },
-      "itemCategory": {
-        "edit": {
-          "label": "itemCategory",
-          "description": "",
-          "placeholder": "",
-          "visible": true,
-          "editable": true,
-          "mainField": "name"
-        },
-        "list": {
-          "label": "itemCategory",
-          "searchable": true,
-          "sortable": true
-        }
-      },
-      "slug": {
-        "edit": {
-          "label": "slug",
-          "description": "",
-          "placeholder": "",
-          "visible": true,
-          "editable": true
-        },
-        "list": {
-          "label": "slug",
-          "searchable": true,
-          "sortable": true
+          "label": "onError",
+          "searchable": false,
+          "sortable": false
         }
       },
       "createdAt": {
@@ -121,38 +92,32 @@
       }
     },
     "layouts": {
+      "list": [
+        "id",
+        "createdAt",
+        "updatedAt"
+      ],
       "edit": [
         [
           {
-            "name": "price",
-            "size": 4
-          },
-          {
-            "name": "availableFrom",
-            "size": 6
+            "name": "onSuccess",
+            "size": 12
           }
         ],
         [
           {
-            "name": "availableTo",
-            "size": 6
-          },
+            "name": "onError",
+            "size": 12
+          }
+        ],
+        [
           {
-            "name": "slug",
-            "size": 6
+            "name": "onCancel",
+            "size": 12
           }
         ]
       ],
-      "editRelations": [
-        "itemCategory"
-      ],
-      "list": [
-        "slug",
-        "id",
-        "price",
-        "availableFrom",
-        "availableTo"
-      ]
+      "editRelations": []
     }
   },
   "type": "object",
