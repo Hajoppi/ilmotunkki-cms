@@ -276,17 +276,6 @@
       "conditions": []
     },
     {
-      "action": "plugin::content-manager.explorer.publish",
-      "subject": "api::front-page.front-page",
-      "properties": {
-        "locales": [
-          "en",
-          "fi"
-        ]
-      },
-      "conditions": []
-    },
-    {
       "action": "plugin::content-manager.explorer.read",
       "subject": "api::front-page.front-page",
       "properties": {
