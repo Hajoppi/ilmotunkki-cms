@@ -23,11 +23,23 @@ export default factories.createCoreController('api::item.item',({strapi}) => ({
   async create(ctx) {
     let {data: {itemType}} = ctx.request.body;
     const  {data: {order: orderUid}} = ctx.request.body;
-    const order = await strapi.query('api::order.order').findOne({
-      where: {
-        uid: orderUid,
-      }
-    });
+    const [order, category] = await Promise.all([
+      strapi.query('api::order.order').findOne({
+        where: {
+          uid: orderUid,
+        }
+      }),
+      strapi.query('api::item-category.item-category').findOne({
+        where: {
+          itemTypes: {
+            id: itemType
+          }
+        },
+        populate: {
+          overflowItem: true,
+        },
+      }),
+    ]);
     if(!order) {
       return ctx.notFound('No order');
     }
@@ -35,37 +47,29 @@ export default factories.createCoreController('api::item.item',({strapi}) => ({
       return ctx.badRequest('Order already done');
     }
     const orderId = order.id;
-    const category = await strapi.query('api::item-category.item-category').findOne({
-      where: {
-        itemTypes: {
-          id: itemType
-        }
-      },
-      populate: {
-        overflowItem: true,
-      },
-    });
-    const totalCategoryItemCount = await strapi.query('api::item.item').count({
-      where: {
-        itemType: {
-          itemCategory: {
-            id: category.id
+    const [totalCategoryItemCount,orderCategoryItemCount] = await Promise.all([
+      strapi.query('api::item.item').count({
+        where: {
+          itemType: {
+            itemCategory: {
+              id: category.id
+            }
           }
-        }
-      },
-    });
-    const orderCategoryItemCount = await strapi.query('api::item.item').count({
-      where: {
-        order: {
-          id: orderId
         },
-        itemType: {
-          itemCategory: {
-            id: category.id
+      }),
+      strapi.query('api::item.item').count({
+        where: {
+          order: {
+            id: orderId
+          },
+          itemType: {
+            itemCategory: {
+              id: category.id
+            }
           }
         }
-      }
-    });
+      })
+    ])
     if(totalCategoryItemCount + 1 > category.maximumItemLimit) {
       if(!category.overflowItem) {
         return ctx.badRequest('Items have run out');
@@ -74,7 +78,6 @@ export default factories.createCoreController('api::item.item',({strapi}) => ({
     }
     if(orderCategoryItemCount + 1 > category.orderItemLimit) {
       return this.transformResponse({});
-      // return ctx.badRequest('Too many items in this order');
     }
     const result = await strapi.query('api::item.item').create({
       data: {
