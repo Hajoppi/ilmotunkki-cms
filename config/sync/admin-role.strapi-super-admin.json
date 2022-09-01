@@ -404,7 +404,8 @@
           "availableFrom",
           "availableTo",
           "itemCategory",
-          "slug"
+          "slug",
+          "upgradeTarget"
         ]
       },
       "conditions": []
@@ -424,7 +425,8 @@
           "availableFrom",
           "availableTo",
           "itemCategory",
-          "slug"
+          "slug",
+          "upgradeTarget"
         ]
       },
       "conditions": []
@@ -438,7 +440,8 @@
           "availableFrom",
           "availableTo",
           "itemCategory",
-          "slug"
+          "slug",
+          "upgradeTarget"
         ]
       },
       "conditions": []
@@ -529,6 +532,57 @@
           "customer",
           "items",
           "uid"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.create",
+      "subject": "api::paytrail.paytrail",
+      "properties": {
+        "fields": [
+          "merchantId",
+          "secretKey",
+          "redirectSuccess",
+          "redirectCancel",
+          "callbackUrl",
+          "endpoint"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.delete",
+      "subject": "api::paytrail.paytrail",
+      "properties": {},
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.read",
+      "subject": "api::paytrail.paytrail",
+      "properties": {
+        "fields": [
+          "merchantId",
+          "secretKey",
+          "redirectSuccess",
+          "redirectCancel",
+          "callbackUrl",
+          "endpoint"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.update",
+      "subject": "api::paytrail.paytrail",
+      "properties": {
+        "fields": [
+          "merchantId",
+          "secretKey",
+          "redirectSuccess",
+          "redirectCancel",
+          "callbackUrl",
+          "endpoint"
         ]
       },
       "conditions": []

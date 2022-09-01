@@ -32,6 +32,11 @@
     },
     "slug": {
       "type": "uid"
+    },
+    "upgradeTarget": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::item-type.item-type"
     }
   }
 }

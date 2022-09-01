@@ -1,14 +1,14 @@
 {
-  "key": "plugin_content_manager_configuration_content_types::api::item-type.item-type",
+  "key": "plugin_content_manager_configuration_content_types::api::paytrail.paytrail",
   "value": {
-    "uid": "api::item-type.item-type",
+    "uid": "api::paytrail.paytrail",
     "settings": {
       "bulkable": true,
       "filterable": true,
       "searchable": true,
       "pageSize": 10,
-      "mainField": "id",
-      "defaultSortBy": "id",
+      "mainField": "merchantId",
+      "defaultSortBy": "merchantId",
       "defaultSortOrder": "ASC"
     },
     "metadatas": {
@@ -20,88 +20,86 @@
           "sortable": true
         }
       },
-      "price": {
+      "merchantId": {
         "edit": {
-          "label": "price",
+          "label": "merchantId",
           "description": "",
           "placeholder": "",
           "visible": true,
           "editable": true
         },
         "list": {
-          "label": "price",
+          "label": "merchantId",
           "searchable": true,
           "sortable": true
         }
       },
-      "availableFrom": {
+      "secretKey": {
         "edit": {
-          "label": "availableFrom",
+          "label": "secretKey",
           "description": "",
           "placeholder": "",
           "visible": true,
           "editable": true
         },
         "list": {
-          "label": "availableFrom",
+          "label": "secretKey",
           "searchable": true,
           "sortable": true
         }
       },
-      "availableTo": {
+      "redirectSuccess": {
         "edit": {
-          "label": "availableTo",
+          "label": "redirectSuccess",
           "description": "",
           "placeholder": "",
           "visible": true,
           "editable": true
         },
         "list": {
-          "label": "availableTo",
+          "label": "redirectSuccess",
           "searchable": true,
           "sortable": true
         }
       },
-      "itemCategory": {
+      "redirectCancel": {
         "edit": {
-          "label": "itemCategory",
-          "description": "",
-          "placeholder": "",
-          "visible": true,
-          "editable": true,
-          "mainField": "name"
-        },
-        "list": {
-          "label": "itemCategory",
-          "searchable": true,
-          "sortable": true
-        }
-      },
-      "slug": {
-        "edit": {
-          "label": "slug",
+          "label": "redirectCancel",
           "description": "",
           "placeholder": "",
           "visible": true,
           "editable": true
         },
         "list": {
-          "label": "slug",
+          "label": "redirectCancel",
           "searchable": true,
           "sortable": true
         }
       },
-      "upgradeTarget": {
+      "callbackUrl": {
         "edit": {
-          "label": "upgradeTarget",
+          "label": "callbackUrl",
           "description": "",
           "placeholder": "",
           "visible": true,
-          "editable": true,
-          "mainField": "id"
+          "editable": true
         },
         "list": {
-          "label": "upgradeTarget",
+          "label": "callbackUrl",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "endpoint": {
+        "edit": {
+          "label": "endpoint",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "endpoint",
           "searchable": true,
           "sortable": true
         }
@@ -137,37 +135,43 @@
     },
     "layouts": {
       "list": [
-        "slug",
         "id",
-        "price",
-        "availableFrom",
-        "availableTo"
+        "merchantId",
+        "redirectSuccess",
+        "redirectCancel"
       ],
+      "editRelations": [],
       "edit": [
         [
           {
-            "name": "price",
-            "size": 4
+            "name": "merchantId",
+            "size": 6
           },
           {
-            "name": "availableFrom",
+            "name": "secretKey",
             "size": 6
           }
         ],
         [
           {
-            "name": "availableTo",
+            "name": "redirectSuccess",
             "size": 6
           },
           {
-            "name": "slug",
+            "name": "redirectCancel",
+            "size": 6
+          }
+        ],
+        [
+          {
+            "name": "callbackUrl",
+            "size": 6
+          },
+          {
+            "name": "endpoint",
             "size": 6
           }
         ]
-      ],
-      "editRelations": [
-        "itemCategory",
-        "upgradeTarget"
       ]
     }
   },

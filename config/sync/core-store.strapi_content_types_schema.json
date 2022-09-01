@@ -2527,6 +2527,11 @@
         "slug": {
           "type": "uid"
         },
+        "upgradeTarget": {
+          "type": "relation",
+          "relation": "oneToOne",
+          "target": "api::item-type.item-type"
+        },
         "createdAt": {
           "type": "datetime"
         },
@@ -2587,6 +2592,11 @@
           },
           "slug": {
             "type": "uid"
+          },
+          "upgradeTarget": {
+            "type": "relation",
+            "relation": "oneToOne",
+            "target": "api::item-type.item-type"
           }
         },
         "kind": "collectionType"
@@ -2721,6 +2731,106 @@
       "uid": "api::order.order",
       "apiName": "order",
       "globalId": "Order",
+      "actions": {},
+      "lifecycles": {}
+    },
+    "api::paytrail.paytrail": {
+      "kind": "singleType",
+      "collectionName": "paytrails",
+      "info": {
+        "singularName": "paytrail",
+        "pluralName": "paytrails",
+        "displayName": "Paytrail"
+      },
+      "options": {
+        "draftAndPublish": false
+      },
+      "pluginOptions": {},
+      "attributes": {
+        "merchantId": {
+          "type": "string"
+        },
+        "secretKey": {
+          "type": "password"
+        },
+        "redirectSuccess": {
+          "type": "string"
+        },
+        "redirectCancel": {
+          "type": "string"
+        },
+        "callbackUrl": {
+          "type": "string"
+        },
+        "endpoint": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "datetime"
+        },
+        "updatedAt": {
+          "type": "datetime"
+        },
+        "createdBy": {
+          "type": "relation",
+          "relation": "oneToOne",
+          "target": "admin::user",
+          "configurable": false,
+          "writable": false,
+          "visible": false,
+          "useJoinTable": false,
+          "private": true
+        },
+        "updatedBy": {
+          "type": "relation",
+          "relation": "oneToOne",
+          "target": "admin::user",
+          "configurable": false,
+          "writable": false,
+          "visible": false,
+          "useJoinTable": false,
+          "private": true
+        }
+      },
+      "__schema__": {
+        "collectionName": "paytrails",
+        "info": {
+          "singularName": "paytrail",
+          "pluralName": "paytrails",
+          "displayName": "Paytrail"
+        },
+        "options": {
+          "draftAndPublish": false
+        },
+        "pluginOptions": {},
+        "attributes": {
+          "merchantId": {
+            "type": "string"
+          },
+          "secretKey": {
+            "type": "password"
+          },
+          "redirectSuccess": {
+            "type": "string"
+          },
+          "redirectCancel": {
+            "type": "string"
+          },
+          "callbackUrl": {
+            "type": "string"
+          },
+          "endpoint": {
+            "type": "string"
+          }
+        },
+        "kind": "singleType"
+      },
+      "modelType": "contentType",
+      "modelName": "paytrail",
+      "connection": "default",
+      "uid": "api::paytrail.paytrail",
+      "apiName": "paytrail",
+      "globalId": "Paytrail",
       "actions": {},
       "lifecycles": {}
     },
