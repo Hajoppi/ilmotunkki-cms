@@ -52,6 +52,12 @@
         "fi",
         "en"
       ]
+    },
+    "diet": {
+      "type": "string"
+    },
+    "nonalcoholic": {
+      "type": "boolean"
     }
   }
 }
