@@ -58,6 +58,9 @@
     },
     "nonalcoholic": {
       "type": "boolean"
+    },
+    "group": {
+      "type": "string"
     }
   }
 }
