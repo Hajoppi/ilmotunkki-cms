@@ -25,5 +25,17 @@ export default factories.createCoreController('api::customer.customer',{
       data
     });
     return this.transformResponse(result);
+  },
+  async findByOrderUid(ctx) {
+    const {uid} = ctx.params;
+    console.log(uid);
+    const entity = await strapi.query('api::customer.customer').findOne({
+      where: {
+        orders: {
+          uid,
+        },
+      },
+    });
+    return this.transformResponse(entity);
   }
 });
