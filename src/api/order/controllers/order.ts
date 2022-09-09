@@ -50,9 +50,6 @@ export default factories.createCoreController('api::order.order', {
   async signups(ctx) {
     const entries = await strapi.query('api::order.order').findMany({
       where: {
-        customer: {
-          accept: true
-        },
         items:{
           itemType: {
             itemCategory: {
@@ -65,11 +62,13 @@ export default factories.createCoreController('api::order.order', {
         customer: true,
       },
     });
-    const mappedEntries = entries.map(order => {
+    const mappedEntries = entries.map((order: any, index: number) => {
+      const { accept } = order.customer
       return {
         id: order.customer.id,
-        name: `${order.customer.firstName} ${order.customer.lastName}`,
-        group: order.customer.group,
+        index,
+        name: accept ? `${order.customer.firstName} ${order.customer.lastName}` : '-',
+        group: accept ? order.customer.group : '-',
       }
     });
     return this.transformResponse(mappedEntries);
