@@ -66,6 +66,7 @@ export default factories.createCoreController('api::order.order', {
       const { accept } = order.customer
       return {
         id: order.customer.id,
+        status: order.status,
         index,
         name: accept ? `${order.customer.firstName} ${order.customer.lastName}` : '-',
         group: accept ? order.customer.group : '-',
