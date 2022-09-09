@@ -25,10 +25,11 @@ type Field = {
 }
 
 
-const fillTemplatePatterns = (text: string, form: Field[], data: Record<string,string>) => {
+const fillTemplatePatterns = (text: string, form: Field[], data: Record<string,string>,translation: Record<string,string>) => {
   form.forEach(field => {
-    const regex = new RegExp(`{{${field.fieldName}}}`,'g')
-    text = text.replace(regex,`${data[field.fieldName]}`)
+    const regex = new RegExp(`{${field.fieldName}}`,'g');
+    const replateString = field.type === 'checkbox' ? data[field.fieldName] ? translation.yes : translation.no : data[field.fieldName]
+    text = text.replace(regex,`${replateString}`);
   });
   return text;
 };
@@ -41,7 +42,7 @@ const sendConfirmationEmail = async (order: any) => {
       }
     }
   });
-  const [template, form] = await Promise.all([
+  const [template, form, translation] = await Promise.all([
     strapi.query('api::email.email').findOne({
       where: {
         type: 'confirmation',
@@ -55,10 +56,15 @@ const sendConfirmationEmail = async (order: any) => {
       populate: {
         contactForm: true
       }
-    })
-  ])
-  const text = fillTemplatePatterns(template.text, form.contactForm, customer);
+    }),
+    strapi.query('api::translation.translation').findOne({})
+  ]);
 
+  const text = fillTemplatePatterns(
+    template.text,
+    form.contactForm,
+    customer,
+    translation).replace('{orderUid}',order.uid);
   const mailOptions: Mail.Options = {
     to: customer.email,
     from: 'm0@tietokilta.fi',
