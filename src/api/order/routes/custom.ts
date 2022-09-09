@@ -9,6 +9,11 @@ export default {
       method: "GET",
       path: "/orders/findByCustomerUid/:uid",
       handler: "order.findByCustomerUid",
+    },
+    {
+      method: "GET",
+      path: "/orders/signups",
+      handler: "order.signups",
     }
   ],
 };

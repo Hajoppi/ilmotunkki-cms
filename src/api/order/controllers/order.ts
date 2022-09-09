@@ -3,6 +3,7 @@
  */
 
 import { factories } from '@strapi/strapi'
+import customer from '../../customer/controllers/customer';
 
 export default factories.createCoreController('api::order.order', {
   async findByUid(ctx) {
@@ -46,4 +47,31 @@ export default factories.createCoreController('api::order.order', {
     });
     return this.transformResponse(entity);
   },
+  async signups(ctx) {
+    const entries = await strapi.query('api::order.order').findMany({
+      where: {
+        customer: {
+          accept: true
+        },
+        items:{
+          itemType: {
+            itemCategory: {
+              name: 'normal'
+            }
+          }
+        }
+      },
+      populate: {
+        customer: true,
+      },
+    });
+    const mappedEntries = entries.map(order => {
+      return {
+        id: order.customer.id,
+        name: `${order.customer.firstName} ${order.customer.lastName}`,
+        group: order.customer.group,
+      }
+    });
+    return this.transformResponse(mappedEntries);
+  }
 });
