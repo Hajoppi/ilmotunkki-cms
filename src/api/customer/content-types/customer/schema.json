@@ -44,7 +44,8 @@
       "required": false
     },
     "accept": {
-      "type": "boolean"
+      "type": "boolean",
+      "default": false
     },
     "locale": {
       "type": "enumeration",
