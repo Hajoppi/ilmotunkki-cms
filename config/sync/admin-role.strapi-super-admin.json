@@ -70,7 +70,8 @@
           "contactForm.label",
           "contactForm.required",
           "contactForm.fieldName",
-          "contactForm.type"
+          "contactForm.type",
+          "itemTypes"
         ],
         "locales": [
           "en",
@@ -98,7 +99,8 @@
           "contactForm.label",
           "contactForm.required",
           "contactForm.fieldName",
-          "contactForm.type"
+          "contactForm.type",
+          "itemTypes"
         ],
         "locales": [
           "en",
@@ -115,7 +117,8 @@
           "contactForm.label",
           "contactForm.required",
           "contactForm.fieldName",
-          "contactForm.type"
+          "contactForm.type",
+          "itemTypes"
         ],
         "locales": [
           "en",
@@ -486,7 +489,8 @@
           "availableTo",
           "itemCategory",
           "slug",
-          "upgradeTarget"
+          "upgradeTarget",
+          "contactForm"
         ]
       },
       "conditions": []
@@ -507,7 +511,8 @@
           "availableTo",
           "itemCategory",
           "slug",
-          "upgradeTarget"
+          "upgradeTarget",
+          "contactForm"
         ]
       },
       "conditions": []
@@ -522,7 +527,8 @@
           "availableTo",
           "itemCategory",
           "slug",
-          "upgradeTarget"
+          "upgradeTarget",
+          "contactForm"
         ]
       },
       "conditions": []

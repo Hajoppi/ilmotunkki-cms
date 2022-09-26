@@ -1,5 +1,5 @@
 /**
- * contact-form router.
+ * contact-form router
  */
 
 import { factories } from '@strapi/strapi';

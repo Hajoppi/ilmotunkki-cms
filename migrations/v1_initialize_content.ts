@@ -69,8 +69,18 @@ module.exports =  async () => {
           fieldName: 'email',
         }
       ],
-      locale: 'en'
+      locale: 'en',
+      localizations: [contactFormFi.id]
     },
+  });
+  await strapi.query('api::contact-form.contact-form').update({
+    where: {
+      id: contactFormFi.id
+    },
+    data: {
+      localizations: [contactFormEn.id],
+    },
+    populate: ['localizations'],
   });
   
   const confirmationEmailFi = await strapi.entityService.create('api::email.email', {

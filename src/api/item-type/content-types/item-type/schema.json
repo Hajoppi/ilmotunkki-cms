@@ -37,6 +37,12 @@
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::item-type.item-type"
+    },
+    "contactForm": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::contact-form.contact-form",
+      "inversedBy": "itemTypes"
     }
   }
 }

@@ -1,5 +1,5 @@
 {
-  "kind": "singleType",
+  "kind": "collectionType",
   "collectionName": "contact_forms",
   "info": {
     "singularName": "contact-form",
@@ -25,6 +25,12 @@
         }
       },
       "component": "contact-form.form-field"
+    },
+    "itemTypes": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::item-type.item-type",
+      "mappedBy": "contactForm"
     }
   }
 }

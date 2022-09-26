@@ -1,5 +1,5 @@
 /**
- * contact-form service.
+ * contact-form service
  */
 
 import { factories } from '@strapi/strapi';

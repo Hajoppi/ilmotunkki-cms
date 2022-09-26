@@ -106,6 +106,21 @@
           "sortable": true
         }
       },
+      "contactForm": {
+        "edit": {
+          "label": "contactForm",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true,
+          "mainField": "id"
+        },
+        "list": {
+          "label": "contactForm",
+          "searchable": true,
+          "sortable": true
+        }
+      },
       "createdAt": {
         "edit": {
           "label": "createdAt",
@@ -167,7 +182,8 @@
       ],
       "editRelations": [
         "itemCategory",
-        "upgradeTarget"
+        "upgradeTarget",
+        "contactForm"
       ]
     }
   },

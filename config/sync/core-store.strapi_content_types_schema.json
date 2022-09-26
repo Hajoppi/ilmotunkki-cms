@@ -1675,7 +1675,7 @@
       "lifecycles": {}
     },
     "api::contact-form.contact-form": {
-      "kind": "singleType",
+      "kind": "collectionType",
       "collectionName": "contact_forms",
       "info": {
         "singularName": "contact-form",
@@ -1701,6 +1701,12 @@
             }
           },
           "component": "contact-form.form-field"
+        },
+        "itemTypes": {
+          "type": "relation",
+          "relation": "oneToMany",
+          "target": "api::item-type.item-type",
+          "mappedBy": "contactForm"
         },
         "createdAt": {
           "type": "datetime"
@@ -1771,9 +1777,15 @@
               }
             },
             "component": "contact-form.form-field"
+          },
+          "itemTypes": {
+            "type": "relation",
+            "relation": "oneToMany",
+            "target": "api::item-type.item-type",
+            "mappedBy": "contactForm"
           }
         },
-        "kind": "singleType"
+        "kind": "collectionType"
       },
       "modelType": "contentType",
       "modelName": "contact-form",
@@ -2684,6 +2696,12 @@
           "relation": "oneToOne",
           "target": "api::item-type.item-type"
         },
+        "contactForm": {
+          "type": "relation",
+          "relation": "manyToOne",
+          "target": "api::contact-form.contact-form",
+          "inversedBy": "itemTypes"
+        },
         "createdAt": {
           "type": "datetime"
         },
@@ -2749,6 +2767,12 @@
             "type": "relation",
             "relation": "oneToOne",
             "target": "api::item-type.item-type"
+          },
+          "contactForm": {
+            "type": "relation",
+            "relation": "manyToOne",
+            "target": "api::contact-form.contact-form",
+            "inversedBy": "itemTypes"
           }
         },
         "kind": "collectionType"
