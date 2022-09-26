@@ -1,5 +1,5 @@
 import '@strapi/strapi';
 
-export default ({ strapi }: { strapi: Strapi }) => {
+export default ({ strapi }) => {
   // destroy phase
 };
