@@ -4,6 +4,8 @@
 import NodeMailer from 'nodemailer';
 import { factories } from '@strapi/strapi';
 import type Mail from 'nodemailer/lib/mailer';
+import SMTPPool from 'nodemailer/lib/smtp-pool';
+
 
 const smtpUser = process.env.SMTP_USER;
 const smtpPassword = process.env.SMTP_PASSWORD;
@@ -22,7 +24,11 @@ transporter
   .then(() =>console.log('Mailer setup succesfully'))
   .catch((error) => console.error('Mailer error', error))
 
-export default factories.createCoreService('api::email.email',{
+type EmailService = {
+  create: (options: Mail.Options) => any;
+}
+
+export default factories.createCoreService<EmailService>('api::email.email',{
   create: (options: Mail.Options) => {
     return transporter.sendMail(options);
   },

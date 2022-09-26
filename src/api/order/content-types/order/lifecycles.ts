@@ -79,7 +79,7 @@ const sendConfirmationEmail = async (order: any) => {
 }
 
 type EmailService = {
-  create: (options: Mail.Options) => Promise<SMTPPool.SentMessageInfo>;
+  create: (options: Mail.Options) => any;
 }
 
 export default {
