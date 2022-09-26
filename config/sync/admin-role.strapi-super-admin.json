@@ -139,7 +139,11 @@
           "orders",
           "uid",
           "accept",
-          "locale"
+          "locale",
+          "diet",
+          "nonalcoholic",
+          "group",
+          "avec"
         ]
       },
       "conditions": []
@@ -165,7 +169,11 @@
           "orders",
           "uid",
           "accept",
-          "locale"
+          "locale",
+          "diet",
+          "nonalcoholic",
+          "group",
+          "avec"
         ]
       },
       "conditions": []
@@ -185,7 +193,11 @@
           "orders",
           "uid",
           "accept",
-          "locale"
+          "locale",
+          "diet",
+          "nonalcoholic",
+          "group",
+          "avec"
         ]
       },
       "conditions": []
@@ -254,7 +266,6 @@
       "subject": "api::front-page.front-page",
       "properties": {
         "fields": [
-          "title",
           "bodyText"
         ],
         "locales": [
@@ -280,7 +291,6 @@
       "subject": "api::front-page.front-page",
       "properties": {
         "fields": [
-          "title",
           "bodyText"
         ],
         "locales": [
@@ -295,7 +305,6 @@
       "subject": "api::front-page.front-page",
       "properties": {
         "fields": [
-          "title",
           "bodyText"
         ],
         "locales": [
@@ -343,6 +352,78 @@
           "code",
           "item",
           "itemType"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.create",
+      "subject": "api::global.global",
+      "properties": {
+        "fields": [
+          "updateEnd"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.delete",
+      "subject": "api::global.global",
+      "properties": {},
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.read",
+      "subject": "api::global.global",
+      "properties": {
+        "fields": [
+          "updateEnd"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.update",
+      "subject": "api::global.global",
+      "properties": {
+        "fields": [
+          "updateEnd"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.create",
+      "subject": "api::group.group",
+      "properties": {
+        "fields": [
+          "name"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.delete",
+      "subject": "api::group.group",
+      "properties": {},
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.read",
+      "subject": "api::group.group",
+      "properties": {
+        "fields": [
+          "name"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.update",
+      "subject": "api::group.group",
+      "properties": {
+        "fields": [
+          "name"
         ]
       },
       "conditions": []
@@ -583,6 +664,62 @@
           "redirectCancel",
           "callbackUrl",
           "endpoint"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.create",
+      "subject": "api::terms-and-condition.terms-and-condition",
+      "properties": {
+        "fields": [
+          "terms",
+          "gdpr"
+        ],
+        "locales": [
+          "en",
+          "fi"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.delete",
+      "subject": "api::terms-and-condition.terms-and-condition",
+      "properties": {
+        "locales": [
+          "en",
+          "fi"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.read",
+      "subject": "api::terms-and-condition.terms-and-condition",
+      "properties": {
+        "fields": [
+          "terms",
+          "gdpr"
+        ],
+        "locales": [
+          "en",
+          "fi"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.update",
+      "subject": "api::terms-and-condition.terms-and-condition",
+      "properties": {
+        "fields": [
+          "terms",
+          "gdpr"
+        ],
+        "locales": [
+          "en",
+          "fi"
         ]
       },
       "conditions": []

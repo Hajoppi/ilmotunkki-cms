@@ -175,6 +175,62 @@
           "sortable": true
         }
       },
+      "diet": {
+        "edit": {
+          "label": "diet",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "diet",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "nonalcoholic": {
+        "edit": {
+          "label": "nonalcoholic",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "nonalcoholic",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "group": {
+        "edit": {
+          "label": "group",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "group",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "avec": {
+        "edit": {
+          "label": "avec",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "avec",
+          "searchable": true,
+          "sortable": true
+        }
+      },
       "createdAt": {
         "edit": {
           "label": "createdAt",
@@ -210,9 +266,6 @@
         "firstName",
         "lastName",
         "email"
-      ],
-      "editRelations": [
-        "orders"
       ],
       "edit": [
         [
@@ -264,7 +317,30 @@
             "name": "locale",
             "size": 6
           }
+        ],
+        [
+          {
+            "name": "diet",
+            "size": 6
+          },
+          {
+            "name": "nonalcoholic",
+            "size": 4
+          }
+        ],
+        [
+          {
+            "name": "group",
+            "size": 6
+          },
+          {
+            "name": "avec",
+            "size": 6
+          }
         ]
+      ],
+      "editRelations": [
+        "orders"
       ]
     }
   },

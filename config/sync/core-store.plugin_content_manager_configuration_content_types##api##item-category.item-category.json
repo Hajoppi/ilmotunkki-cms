@@ -55,7 +55,7 @@
           "placeholder": "",
           "visible": true,
           "editable": true,
-          "mainField": "id"
+          "mainField": "slug"
         },
         "list": {
           "label": "itemTypes",
@@ -84,7 +84,7 @@
           "placeholder": "",
           "visible": true,
           "editable": true,
-          "mainField": "id"
+          "mainField": "slug"
         },
         "list": {
           "label": "overflowItem",
@@ -122,16 +122,6 @@
       }
     },
     "layouts": {
-      "list": [
-        "id",
-        "name",
-        "orderItemLimit",
-        "itemTypes"
-      ],
-      "editRelations": [
-        "itemTypes",
-        "overflowItem"
-      ],
       "edit": [
         [
           {
@@ -149,6 +139,16 @@
             "size": 4
           }
         ]
+      ],
+      "editRelations": [
+        "itemTypes",
+        "overflowItem"
+      ],
+      "list": [
+        "id",
+        "name",
+        "orderItemLimit",
+        "itemTypes"
       ]
     }
   },

@@ -7,8 +7,8 @@
       "filterable": true,
       "searchable": true,
       "pageSize": 10,
-      "mainField": "title",
-      "defaultSortBy": "title",
+      "mainField": "id",
+      "defaultSortBy": "id",
       "defaultSortOrder": "ASC"
     },
     "metadatas": {
@@ -16,20 +16,6 @@
         "edit": {},
         "list": {
           "label": "id",
-          "searchable": true,
-          "sortable": true
-        }
-      },
-      "title": {
-        "edit": {
-          "label": "title",
-          "description": "",
-          "placeholder": "",
-          "visible": true,
-          "editable": true
-        },
-        "list": {
-          "label": "title",
           "searchable": true,
           "sortable": true
         }
@@ -80,25 +66,18 @@
     "layouts": {
       "list": [
         "id",
-        "title",
         "createdAt",
         "updatedAt"
       ],
-      "editRelations": [],
       "edit": [
-        [
-          {
-            "name": "title",
-            "size": 6
-          }
-        ],
         [
           {
             "name": "bodyText",
             "size": 12
           }
         ]
-      ]
+      ],
+      "editRelations": []
     }
   },
   "type": "object",

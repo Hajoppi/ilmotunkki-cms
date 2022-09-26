@@ -7,9 +7,13 @@ export default ({ env }) => ({
     },
   },
   "config-sync": {
-    excludedConfig: [
-      "core-store.plugin_users-permissions_grant",
-      "core-store.plugin_migrations_version",
-    ],
+    enabled: true,
+    config: {
+      excludedConfig: [
+        "core-store.plugin_users-permissions_grant",
+        "core-store.plugin_migrations_version",
+        "core-store.plugin_upload_metrics"
+      ],
+    },
   },
 });

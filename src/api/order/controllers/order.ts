@@ -3,7 +3,6 @@
  */
 
 import { factories } from '@strapi/strapi'
-import customer from '../../customer/controllers/customer';
 
 export default factories.createCoreController('api::order.order', {
   async findByUid(ctx) {

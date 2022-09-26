@@ -10,6 +10,9 @@
       "action": "api::customer.customer.create"
     },
     {
+      "action": "api::customer.customer.findByOrderUid"
+    },
+    {
       "action": "api::customer.customer.findOne"
     },
     {
@@ -20,6 +23,15 @@
     },
     {
       "action": "api::giftcard.giftcard.addGiftCard"
+    },
+    {
+      "action": "api::global.global.find"
+    },
+    {
+      "action": "api::group.group.find"
+    },
+    {
+      "action": "api::group.group.findOne"
     },
     {
       "action": "api::item-category.item-category.find"
@@ -46,7 +58,16 @@
       "action": "api::order.order.create"
     },
     {
+      "action": "api::order.order.findByCustomerUid"
+    },
+    {
       "action": "api::order.order.findByUid"
+    },
+    {
+      "action": "api::order.order.signups"
+    },
+    {
+      "action": "api::terms-and-condition.terms-and-condition.find"
     },
     {
       "action": "api::translation.translation.find"

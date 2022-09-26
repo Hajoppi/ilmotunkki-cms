@@ -1830,7 +1830,8 @@
           "required": false
         },
         "accept": {
-          "type": "boolean"
+          "type": "boolean",
+          "default": false
         },
         "locale": {
           "type": "enumeration",
@@ -1838,6 +1839,18 @@
             "fi",
             "en"
           ]
+        },
+        "diet": {
+          "type": "string"
+        },
+        "nonalcoholic": {
+          "type": "boolean"
+        },
+        "group": {
+          "type": "string"
+        },
+        "avec": {
+          "type": "string"
         },
         "createdAt": {
           "type": "datetime"
@@ -1911,7 +1924,8 @@
             "required": false
           },
           "accept": {
-            "type": "boolean"
+            "type": "boolean",
+            "default": false
           },
           "locale": {
             "type": "enumeration",
@@ -1919,6 +1933,18 @@
               "fi",
               "en"
             ]
+          },
+          "diet": {
+            "type": "string"
+          },
+          "nonalcoholic": {
+            "type": "boolean"
+          },
+          "group": {
+            "type": "string"
+          },
+          "avec": {
+            "type": "string"
           }
         },
         "kind": "collectionType"
@@ -2088,14 +2114,6 @@
         }
       },
       "attributes": {
-        "title": {
-          "type": "string",
-          "pluginOptions": {
-            "i18n": {
-              "localized": true
-            }
-          }
-        },
         "bodyText": {
           "type": "richtext",
           "pluginOptions": {
@@ -2164,14 +2182,6 @@
           }
         },
         "attributes": {
-          "title": {
-            "type": "string",
-            "pluginOptions": {
-              "i18n": {
-                "localized": true
-              }
-            }
-          },
           "bodyText": {
             "type": "richtext",
             "pluginOptions": {
@@ -2283,6 +2293,148 @@
       "uid": "api::giftcard.giftcard",
       "apiName": "giftcard",
       "globalId": "Giftcard",
+      "actions": {},
+      "lifecycles": {}
+    },
+    "api::global.global": {
+      "kind": "singleType",
+      "collectionName": "globals",
+      "info": {
+        "singularName": "global",
+        "pluralName": "globals",
+        "displayName": "Global"
+      },
+      "options": {
+        "draftAndPublish": false
+      },
+      "pluginOptions": {},
+      "attributes": {
+        "updateEnd": {
+          "type": "datetime"
+        },
+        "createdAt": {
+          "type": "datetime"
+        },
+        "updatedAt": {
+          "type": "datetime"
+        },
+        "createdBy": {
+          "type": "relation",
+          "relation": "oneToOne",
+          "target": "admin::user",
+          "configurable": false,
+          "writable": false,
+          "visible": false,
+          "useJoinTable": false,
+          "private": true
+        },
+        "updatedBy": {
+          "type": "relation",
+          "relation": "oneToOne",
+          "target": "admin::user",
+          "configurable": false,
+          "writable": false,
+          "visible": false,
+          "useJoinTable": false,
+          "private": true
+        }
+      },
+      "__schema__": {
+        "collectionName": "globals",
+        "info": {
+          "singularName": "global",
+          "pluralName": "globals",
+          "displayName": "Global"
+        },
+        "options": {
+          "draftAndPublish": false
+        },
+        "pluginOptions": {},
+        "attributes": {
+          "updateEnd": {
+            "type": "datetime"
+          }
+        },
+        "kind": "singleType"
+      },
+      "modelType": "contentType",
+      "modelName": "global",
+      "connection": "default",
+      "uid": "api::global.global",
+      "apiName": "global",
+      "globalId": "Global",
+      "actions": {},
+      "lifecycles": {}
+    },
+    "api::group.group": {
+      "kind": "collectionType",
+      "collectionName": "groups",
+      "info": {
+        "singularName": "group",
+        "pluralName": "groups",
+        "displayName": "Group",
+        "description": ""
+      },
+      "options": {
+        "draftAndPublish": false
+      },
+      "pluginOptions": {},
+      "attributes": {
+        "name": {
+          "type": "uid"
+        },
+        "createdAt": {
+          "type": "datetime"
+        },
+        "updatedAt": {
+          "type": "datetime"
+        },
+        "createdBy": {
+          "type": "relation",
+          "relation": "oneToOne",
+          "target": "admin::user",
+          "configurable": false,
+          "writable": false,
+          "visible": false,
+          "useJoinTable": false,
+          "private": true
+        },
+        "updatedBy": {
+          "type": "relation",
+          "relation": "oneToOne",
+          "target": "admin::user",
+          "configurable": false,
+          "writable": false,
+          "visible": false,
+          "useJoinTable": false,
+          "private": true
+        }
+      },
+      "__schema__": {
+        "collectionName": "groups",
+        "info": {
+          "singularName": "group",
+          "pluralName": "groups",
+          "displayName": "Group",
+          "description": ""
+        },
+        "options": {
+          "draftAndPublish": false
+        },
+        "pluginOptions": {},
+        "attributes": {
+          "name": {
+            "type": "uid"
+          }
+        },
+        "kind": "collectionType"
+      },
+      "modelType": "contentType",
+      "modelName": "group",
+      "connection": "default",
+      "uid": "api::group.group",
+      "apiName": "group",
+      "globalId": "Group",
       "actions": {},
       "lifecycles": {}
     },
@@ -2831,6 +2983,128 @@
       "uid": "api::paytrail.paytrail",
       "apiName": "paytrail",
       "globalId": "Paytrail",
+      "actions": {},
+      "lifecycles": {}
+    },
+    "api::terms-and-condition.terms-and-condition": {
+      "kind": "singleType",
+      "collectionName": "terms_and_conditions",
+      "info": {
+        "singularName": "terms-and-condition",
+        "pluralName": "terms-and-conditions",
+        "displayName": "TermsAndCondition",
+        "description": ""
+      },
+      "options": {
+        "draftAndPublish": false
+      },
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "attributes": {
+        "terms": {
+          "type": "richtext",
+          "pluginOptions": {
+            "i18n": {
+              "localized": true
+            }
+          }
+        },
+        "gdpr": {
+          "type": "richtext",
+          "pluginOptions": {
+            "i18n": {
+              "localized": true
+            }
+          }
+        },
+        "createdAt": {
+          "type": "datetime"
+        },
+        "updatedAt": {
+          "type": "datetime"
+        },
+        "createdBy": {
+          "type": "relation",
+          "relation": "oneToOne",
+          "target": "admin::user",
+          "configurable": false,
+          "writable": false,
+          "visible": false,
+          "useJoinTable": false,
+          "private": true
+        },
+        "updatedBy": {
+          "type": "relation",
+          "relation": "oneToOne",
+          "target": "admin::user",
+          "configurable": false,
+          "writable": false,
+          "visible": false,
+          "useJoinTable": false,
+          "private": true
+        },
+        "localizations": {
+          "writable": true,
+          "private": false,
+          "configurable": false,
+          "visible": false,
+          "type": "relation",
+          "relation": "oneToMany",
+          "target": "api::terms-and-condition.terms-and-condition"
+        },
+        "locale": {
+          "writable": true,
+          "private": false,
+          "configurable": false,
+          "visible": false,
+          "type": "string"
+        }
+      },
+      "__schema__": {
+        "collectionName": "terms_and_conditions",
+        "info": {
+          "singularName": "terms-and-condition",
+          "pluralName": "terms-and-conditions",
+          "displayName": "TermsAndCondition",
+          "description": ""
+        },
+        "options": {
+          "draftAndPublish": false
+        },
+        "pluginOptions": {
+          "i18n": {
+            "localized": true
+          }
+        },
+        "attributes": {
+          "terms": {
+            "type": "richtext",
+            "pluginOptions": {
+              "i18n": {
+                "localized": true
+              }
+            }
+          },
+          "gdpr": {
+            "type": "richtext",
+            "pluginOptions": {
+              "i18n": {
+                "localized": true
+              }
+            }
+          }
+        },
+        "kind": "singleType"
+      },
+      "modelType": "contentType",
+      "modelName": "terms-and-condition",
+      "connection": "default",
+      "uid": "api::terms-and-condition.terms-and-condition",
+      "apiName": "terms-and-condition",
+      "globalId": "TermsAndCondition",
       "actions": {},
       "lifecycles": {}
     },

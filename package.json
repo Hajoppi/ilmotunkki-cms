@@ -2,7 +2,7 @@
   "name": "ilmotunkki-cms",
   "private": true,
   "version": "0.1.0",
-  "description": "A Strapi application",
+  "description": "Headless CMS for Ilmotunkki",
   "scripts": {
     "develop": "strapi develop",
     "start": "strapi start",
@@ -10,9 +10,9 @@
     "strapi": "strapi"
   },
   "dependencies": {
-    "@strapi/plugin-i18n": "4.3.4",
-    "@strapi/plugin-users-permissions": "4.3.4",
-    "@strapi/strapi": "4.3.4",
+    "@strapi/plugin-i18n": "4.3.9",
+    "@strapi/plugin-users-permissions": "4.3.9",
+    "@strapi/strapi": "4.3.9",
     "@types/nodemailer": "^6.4.5",
     "@types/uuid": "^8.3.4",
     "nodemailer": "^6.7.7",
@@ -22,13 +22,12 @@
     "uuid": "^8.3.2"
   },
   "author": {
-    "name": "A Strapi developer"
+    "name": "Tuomas Kontola"
   },
   "strapi": {
     "uuid": "41704848-286b-441e-829f-e09468e66808"
   },
   "engines": {
-    "node": ">=12.x.x <=16.x.x",
     "npm": ">=6.0.0"
   },
   "license": "MIT"

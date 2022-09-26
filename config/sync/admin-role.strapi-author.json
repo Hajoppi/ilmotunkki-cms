@@ -169,7 +169,6 @@
       "subject": "api::front-page.front-page",
       "properties": {
         "fields": [
-          "title",
           "bodyText"
         ]
       },
@@ -182,7 +181,6 @@
       "subject": "api::front-page.front-page",
       "properties": {
         "fields": [
-          "title",
           "bodyText"
         ]
       },
@@ -195,7 +193,6 @@
       "subject": "api::front-page.front-page",
       "properties": {
         "fields": [
-          "title",
           "bodyText"
         ]
       },
