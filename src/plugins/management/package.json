@@ -1,10 +1,10 @@
 {
-  "name": "managing",
+  "name": "management",
   "version": "0.0.0",
   "description": "This is the description of the plugin.",
   "strapi": {
-    "name": "managing",
-    "description": "Description of managing plugin",
+    "name": "management",
+    "description": "Description of management plugin",
     "kind": "plugin"
   },
   "dependencies": {

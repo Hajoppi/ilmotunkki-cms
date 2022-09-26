@@ -16,7 +16,7 @@ RUN yarn config set network-timeout 600000 -g && yarn install
 COPY ./ .
 
 # Build added plugins
-WORKDIR /app/src/plugins/managing
+WORKDIR /app/src/plugins/management
 RUN yarn config set network-timeout 600000 -g && yarn install
 RUN yarn build
 

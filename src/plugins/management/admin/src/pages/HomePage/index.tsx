@@ -21,7 +21,7 @@ const Title = styled.h1`
 
 const HomePage: React.FunctionComponent = () => {
   const exportData = async () => {
-    const data = await request('/managing/signups', {
+    const data = await request('/management/signups', {
       method: 'GET',
     });
     const url = window.URL.createObjectURL(new Blob([data.result]));

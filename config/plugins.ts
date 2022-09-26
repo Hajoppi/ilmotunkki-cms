@@ -16,8 +16,8 @@ export default ({ env }) => ({
       ],
     },
   },
-  'managing': {
+  'management': {
     enabled: true,
-    resolve: './src/plugins/managing'
+    resolve: './src/plugins/management'
   },
 });
