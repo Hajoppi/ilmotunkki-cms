@@ -24,7 +24,7 @@ const HomePage: React.FunctionComponent = () => {
     const data = await request('/managing/signups', {
       method: 'GET',
     });
-    const url = window.URL.createObjectURL(new Blob([data]));
+    const url = window.URL.createObjectURL(new Blob([data.result]));
       const link = document.createElement('a');
       link.href = url;
       link.setAttribute('download', 'signups.csv');

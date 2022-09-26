@@ -32,6 +32,6 @@ export default ({strapi}: any) => ({
       }
       result += `${Object.values(values).join(';')}\n`
     });
-    ctx.body = result;
+    ctx.body = {result};
   },
 });
