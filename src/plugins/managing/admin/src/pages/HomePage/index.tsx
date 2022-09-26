@@ -7,6 +7,8 @@
 import React from 'react';
 import { Button } from '@strapi/design-system/Button';
 import styled from 'styled-components';
+import { request } from '@strapi/helper-plugin';
+
 
 const Container = styled.div`
   color: ${props => props.theme.colors.neutral1000};
@@ -19,17 +21,9 @@ const Title = styled.h1`
 
 const HomePage: React.FunctionComponent = () => {
   const exportData = async () => {
-    const token = sessionStorage.getItem('jwtToken')?.replace(/"/g,'');
-    if(!token) return;
-    const response = await fetch('/managing/signups',{
-      headers: {
-        'Authorization': `Bearer ${token}`,
-      }
+    const data = await request('/i18n/locales', {
+      method: 'GET',
     });
-    if(!response.ok) {
-      return;
-    }
-    const data = await response.text();
     const url = window.URL.createObjectURL(new Blob([data]));
       const link = document.createElement('a');
       link.href = url;
