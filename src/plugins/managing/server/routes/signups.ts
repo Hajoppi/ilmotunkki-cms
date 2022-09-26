@@ -7,7 +7,6 @@ export default {
       handler: 'signups.signups',
       config: {
         policies: [],
-        auth: false,
       },
     },
   ],
