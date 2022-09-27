@@ -71,7 +71,7 @@ export default factories.createCoreController('api::order.order', {
         name: accept ? `${order.customer.firstName} ${order.customer.lastName}` : '-',
         group: accept ? order.customer.group : '-',
       }
-    });
+    }).filter(Boolean);
     return this.transformResponse(mappedEntries);
   }
 });
