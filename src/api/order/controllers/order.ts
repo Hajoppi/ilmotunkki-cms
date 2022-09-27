@@ -62,6 +62,7 @@ export default factories.createCoreController('api::order.order', {
       },
     });
     const mappedEntries = entries.map((order: any, index: number) => {
+      if(!order || !order.customer) return null;
       const { accept = undefined } = order.customer
       return {
         id: order.customer.id,
