@@ -29,8 +29,7 @@
     "itemTypes": {
       "type": "relation",
       "relation": "oneToMany",
-      "target": "api::item-type.item-type",
-      "mappedBy": "contactForm"
+      "target": "api::item-type.item-type"
     }
   }
 }
