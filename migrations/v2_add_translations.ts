@@ -73,7 +73,47 @@ module.exports = async () => {
           {
           "key": "backToOrder",
           "value": "Takaisin tilaukseen"
-          }
+          },
+          {
+            "key": "test",
+            "value": "Testi"
+            },
+            {
+            "key": "update",
+            "value": "Päivitä"
+            },
+            {
+            "key": "name",
+            "value": "Nimi"
+            },
+            {
+            "key": "group",
+            "value": "Pöytäseuratoive"
+            },
+            {
+            "key": "signups",
+            "value": "Ilmoittautuneet"
+            },
+            {
+            "key": "total",
+            "value": "Yhteensä"
+            },
+            {
+            "key": "code",
+            "value": "Koodi"
+            },
+            {
+            "key": "unverified",
+            "value": "Vahvistamaton"
+            },
+            {
+            "key": "normal",
+            "value": "Vieraat"
+            },
+            {
+            "key": "extra",
+            "value": "Sillis"
+            }
       ],
       locale: 'fi',
     }
@@ -152,6 +192,46 @@ module.exports = async () => {
           {
           "key": "backToOrder",
           "value": "Back to order"
+          },
+          {
+          "key": "test",
+          "value": "Test"
+          },
+          {
+          "key": "update",
+          "value": "Update"
+          },
+          {
+          "key": "name",
+          "value": "Name"
+          },
+          {
+          "key": "group",
+          "value": "Table group"
+          },
+          {
+          "key": "signups",
+          "value": "Signups"
+          },
+          {
+          "key": "total",
+          "value": "Total"
+          },
+          {
+          "key": "code",
+          "value": "Code"
+          },
+          {
+          "key": "unverified",
+          "value": "Unverified"
+          },
+          {
+          "key": "normal",
+          "value": "Guests"
+          },
+          {
+          "key": "extra",
+          "value": "Sillis"
           }
       ],
       localizations: [translationFi.id],
