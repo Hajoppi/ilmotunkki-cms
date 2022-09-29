@@ -33,8 +33,8 @@ jobs:
             StrictHostKeyChecking no
           END
       - name: pull
-        run: ssh production 'cd ./production && docker-compose pull cms'
+        run: ssh production 'cd ./production && docker compose pull cms'
       - name: restart
-        run: ssh production 'cd ./production && docker-compose up -d --force-recreate --no-deps cms'
+        run: ssh production 'cd ./production && docker compose up -d --force-recreate --no-deps cms'
 
 
