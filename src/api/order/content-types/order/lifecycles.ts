@@ -67,7 +67,7 @@ const sendConfirmationEmail = async (order: any) => {
     translation).replace('{orderUid}',order.uid);
   const mailOptions: Mail.Options = {
     to: customer.email,
-    from: 'm0@tietokilta.fi',
+    from: template.from,
     subject: template.subject,
     text: text,
   }

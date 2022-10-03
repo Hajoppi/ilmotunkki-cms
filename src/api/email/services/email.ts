@@ -4,8 +4,6 @@
 import NodeMailer from 'nodemailer';
 import { factories } from '@strapi/strapi';
 import type Mail from 'nodemailer/lib/mailer';
-import SMTPPool from 'nodemailer/lib/smtp-pool';
-
 
 const smtpUser = process.env.SMTP_USER;
 const smtpPassword = process.env.SMTP_PASSWORD;

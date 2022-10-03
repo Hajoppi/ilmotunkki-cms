@@ -18,7 +18,7 @@ export default factories.createCoreController('api::customer.customer',{
   async update(ctx) {
     const {id} = ctx.request.params;
     const {data} = ctx.request.body;
-    const { updateEnd=undefined } = await strapi.query('api::global.global').findOne();
+    const { updateEnd= undefined } = await strapi.query('api::global.global').findOne();
     if(updateEnd && new Date(updateEnd) <= new Date()) {
       return this.transformResponse({});
     }
