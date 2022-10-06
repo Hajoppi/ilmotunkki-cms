@@ -112,5 +112,24 @@ export default factories.createCoreController('api::item.item',({strapi}) => ({
       }
     });
     return this.transformResponse(entities);
+  },
+  async findOne(ctx) {
+    const { orderUid } = ctx.request.query;
+    const {id} = ctx.request.params;
+    const entity = await strapi.query('api::item.item').findOne({
+      where: {
+        order: {
+          uid: orderUid
+        },
+        id,
+      },
+      populate: {
+        itemType: true,
+      }
+    });
+    if(!entity) {
+      return ctx.notFound('Not found');
+    }
+    return this.transformResponse(entity);
   }
 }));

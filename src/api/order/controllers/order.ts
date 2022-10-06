@@ -74,24 +74,4 @@ export default factories.createCoreController('api::order.order', {
     }).filter(Boolean);
     return this.transformResponse(mappedEntries);
   },
-  async validate(ctx) {
-    const {token} = ctx.params;
-    const [orderUid, itemId] = token.split('_')
-    const orderEntry = await strapi.query('api::order.order').findOne({
-      where: {
-        uid: orderUid
-      },
-      populate: {
-        items: true
-      }
-    });
-    if(!orderEntry) {
-      return this.transformResponse({isValid: false});
-    }
-    const hasItem = orderEntry.items.some(item => item.id === Number(itemId))
-    if(!hasItem) {
-      return this.transformResponse({isValid: false});
-    }
-    return this.transformResponse({isValid: true});
-  }
 });
