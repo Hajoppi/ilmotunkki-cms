@@ -14,6 +14,11 @@ export default {
       method: "GET",
       path: "/orders/signups",
       handler: "order.signups",
+    },
+    {
+      method: "GET",
+      path: "/orders/validate/:token",
+      handler: "order.validate",
     }
   ],
 };
