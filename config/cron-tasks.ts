@@ -16,9 +16,17 @@ const cleanExpiredOrders = async () => {
     }),
     strapi.query('api::order.order').deleteMany({
       where: {
-        status: {
-          $not: 'ok',
-        },
+        $or: [
+          {
+            status: 'new'
+          },
+          {
+            status: 'fail'
+          },
+          {
+            status: 'pending'
+          },
+        ],
         createdAt: {
           $lt: timedLife30
         }

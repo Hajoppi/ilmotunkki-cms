@@ -16,6 +16,7 @@
       "type": "enumeration",
       "enum": [
         "new",
+        "admin-new",
         "ok",
         "fail",
         "pending"
