@@ -27,7 +27,7 @@ const cleanExpiredOrders = async () => {
             status: 'pending'
           },
         ],
-        createdAt: {
+        updatedAt: {
           $lt: timedLife30
         }
       }
