@@ -14,6 +14,6 @@ export default {
       method: "GET",
       path: "/orders/signups",
       handler: "order.signups",
-    }
+    },
   ],
 };

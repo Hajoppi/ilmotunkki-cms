@@ -13,11 +13,11 @@ import { request } from '@strapi/helper-plugin';
 const Container = styled.div`
   color: ${props => props.theme.colors.neutral1000};
   padding: 32px;
-`
+`;
 
 const Title = styled.h1`
   padding: 24px 0;
-`
+`;
 
 const HomePage: React.FunctionComponent = () => {
   const exportData = async () => {

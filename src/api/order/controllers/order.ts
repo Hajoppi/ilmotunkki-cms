@@ -73,5 +73,5 @@ export default factories.createCoreController('api::order.order', {
       }
     }).filter(Boolean);
     return this.transformResponse(mappedEntries);
-  }
+  },
 });
