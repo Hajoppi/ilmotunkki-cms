@@ -9,8 +9,8 @@ export default [
           "connect-src": ["'self'", "https:"],
           "img-src": [
             "'self'",
-            "data:",
-            "blob:",
+            "data:*",
+            "blob:*",
           ],
           "media-src": ["'self'", "data:*", "blob:*"],
           upgradeInsecureRequests: null,
