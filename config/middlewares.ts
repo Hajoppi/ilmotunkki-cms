@@ -12,7 +12,7 @@ export default [
             "data:",
             "blob:",
           ],
-          "media-src": ["'self'", "data:", "blob:"],
+          "media-src": ["'self'", "data:*", "blob:*"],
           upgradeInsecureRequests: null,
         },
       }
