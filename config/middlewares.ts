@@ -4,6 +4,7 @@ export default [
     name: 'strapi::security',
     config: {
       contentSecurityPolicy: {
+        useDefaults: true,
         directives: {
           "connect-src": ["'self'", "https:"],
           "img-src": [
@@ -11,7 +12,7 @@ export default [
             "data:*",
             "blob:*",
           ],
-          "media-src": ["'self'", "data:*", "blob:*"],
+          "media-src": ["'self'", "data:", "blob:", "*"],
           upgradeInsecureRequests: null,
         },
       }
