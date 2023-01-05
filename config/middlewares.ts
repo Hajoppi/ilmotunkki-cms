@@ -6,11 +6,11 @@ export default [
       contentSecurityPolicy: {
         useDefaults: true,
         directives: {
-          "connect-src": ["'self'", "https:"],
+          "connect-src": ["'self'", "https:", "data:", "blob:"],
           "img-src": [
             "'self'",
-            "data:*",
-            "blob:*",
+            "data:",
+            "blob:",
             "*"
           ],
           "media-src": ["'self'", "data:", "blob:", "*"],
