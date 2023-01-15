@@ -65,6 +65,12 @@
     },
     "avec": {
       "type": "string"
+    },
+    "representativeOf": {
+      "type": "string"
+    },
+    "greeting": {
+      "type": "boolean"
     }
   }
 }
