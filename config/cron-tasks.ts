@@ -93,10 +93,14 @@ export default {
       cleanOrphanCustomers(),
       cleanOrphanItems(),
     ]);
-    strapi.log.info(`[CRON] Removed ${newOrders.count} new orders`);
-    strapi.log.info(`[CRON] Expired ${pendingOrders.count} pending orders`);
-    strapi.log.info(`[CRON] Removed ${expiredOrders.count} expired orders`);
-    strapi.log.info(`[CRON] Removed ${itemResult.count} orderless items`);
-    strapi.log.info(`[CRON] Removed ${customerResult.count} orderless customers`);
+    if(newOrders.count > 0) {
+      strapi.log.info(`[CRON] Removed ${newOrders.count} new orders`);
+    }
+    if(pendingOrders.count > 0) {
+      strapi.log.info(`[CRON] Expired ${pendingOrders.count} pending orders`);
+    }
+    if(expiredOrders.count > 0) {
+      strapi.log.info(`[CRON] Removed ${expiredOrders.count} expired orders`);
+    }
   },
 }
