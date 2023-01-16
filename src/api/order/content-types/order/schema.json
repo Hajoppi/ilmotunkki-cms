@@ -19,7 +19,8 @@
         "admin-new",
         "ok",
         "fail",
-        "pending"
+        "pending",
+        "expired"
       ],
       "default": "new"
     },

@@ -1,20 +1,22 @@
 import type { Strapi } from "@strapi/strapi";
 
 const cleanExpiredOrders = async () => {
-  const timedLife15 = new Date();
   const timedLife30 = new Date();
-  timedLife15.setMinutes(timedLife15.getMinutes() - 30);
-  timedLife30.setMinutes(timedLife30.getMinutes() - 60);
-  const [newOrders, pendingOrders] = await Promise.all([
+  const timedLife60 = new Date();
+  const timedLife4days = new Date();
+  timedLife30.setMinutes(timedLife30.getMinutes() - 30);
+  timedLife60.setMinutes(timedLife60.getMinutes() - 60);
+  timedLife4days.setDate(timedLife4days.getDate() - 4);
+  const [newOrders, pendingOrders, expiredOrders] = await Promise.all([
     strapi.query('api::order.order').deleteMany({
       where: {
         status: 'new',
         createdAt: {
-          $lt: timedLife15
+          $lt: timedLife30
         }
       }
     }),
-    strapi.query('api::order.order').deleteMany({
+    strapi.query('api::order.order').updateMany({
       where: {
         $or: [
           {
@@ -28,12 +30,23 @@ const cleanExpiredOrders = async () => {
           },
         ],
         updatedAt: {
-          $lt: timedLife30
+          $lt: timedLife60
         }
+      },
+      data: {
+        status: 'expired'
       }
     }),
+    strapi.query('api::order.order').deleteMany({
+      where: {
+        status: 'expired',
+        updatedAt: {
+          $lt: timedLife4days,
+        }
+      }
+    })
   ]);
-  return [newOrders, pendingOrders];
+  return [newOrders, pendingOrders, expiredOrders];
 }
 
 const cleanOrphanItems = async () => {
@@ -75,13 +88,14 @@ const cleanOrphanCustomers = async () => {
 }
 export default {
   '*/1 * * * *': async({ strapi}: {strapi: Strapi}) => {
-    const [newOrders, pendingOrders] = await cleanExpiredOrders();
+    const [newOrders, pendingOrders, expiredOrders] = await cleanExpiredOrders();
     const [customerResult, itemResult] = await Promise.all([
       cleanOrphanCustomers(),
       cleanOrphanItems(),
     ]);
     strapi.log.info(`[CRON] Removed ${newOrders.count} new orders`);
-    strapi.log.info(`[CRON] Removed ${pendingOrders.count} pending orders`);
+    strapi.log.info(`[CRON] Expired ${pendingOrders.count} pending orders`);
+    strapi.log.info(`[CRON] Removed ${expiredOrders.count} expired orders`);
     strapi.log.info(`[CRON] Removed ${itemResult.count} orderless items`);
     strapi.log.info(`[CRON] Removed ${customerResult.count} orderless customers`);
   },
