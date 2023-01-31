@@ -3,15 +3,6 @@ import '@strapi/strapi';
 export default ({strapi}: any) => ({
   async signups(ctx: any) {
     const entries = await strapi.query('api::order.order').findMany({
-      where: {
-        items:{
-          itemType: {
-            itemCategory: {
-              name: 'normal'
-            }
-          }
-        }
-      },
       populate: {
         customer: true,
         items: {
