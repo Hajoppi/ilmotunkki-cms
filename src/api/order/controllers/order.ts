@@ -74,4 +74,20 @@ export default factories.createCoreController('api::order.order', {
     }).filter(Boolean);
     return this.transformResponse(mappedEntries);
   },
+  async update(ctx) {
+    const { id } = ctx.request.params;
+    const entity = await strapi.query('api::order.order').findOne({
+      where: {
+        id,
+      },
+    });
+    // Prevent API calls from changing the status of an order after it is set as OK
+    if(entity && entity.status === 'ok') {
+      ctx.request.body.data.status = 'ok';
+    }
+    const info = {...ctx.request.body,...ctx.request.params}
+    strapi.log.info(`Order updated with information ${JSON.stringify(info)}`);
+    const { data, meta } = await super.update(ctx);
+    return { data, meta };
+  }
 });
