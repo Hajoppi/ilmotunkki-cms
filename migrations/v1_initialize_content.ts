@@ -21,7 +21,7 @@ module.exports =  async () => {
       locale: 'en'
     }
   });
-  
+
   const contactFormFi = await strapi.entityService.create('api::contact-form.contact-form', {
     data: {
       contactForm: [
@@ -82,12 +82,13 @@ module.exports =  async () => {
     },
     populate: ['localizations'],
   });
-  
+
   const confirmationEmailFi = await strapi.entityService.create('api::email.email', {
     data: {
       subject: 'Etusivu',
       text: 'Hei, hyvin ilmoittauduttu',
       type: 'confirmation',
+      from: 'admin@example.org',
       locale: 'fi',
     },
   });
@@ -96,6 +97,7 @@ module.exports =  async () => {
       subject: 'Front page',
       text: 'Hi, well done because you signed up',
       type: 'confirmation',
+      from: 'admin@example.org',
       locale: 'en',
       localizations: [confirmationEmailFi.id]
     },
@@ -109,7 +111,7 @@ module.exports =  async () => {
     },
     populate: ['localizations'],
   });
-  
+
   const itemType1 = await strapi.entityService.create('api::item-type.item-type', {
     data: {
       price: 100,
