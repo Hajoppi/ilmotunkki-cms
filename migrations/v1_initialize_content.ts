@@ -1,12 +1,4 @@
-import fs from 'fs'
 export default async () => {
-  if (fs.existsSync(strapi.config.get('plugin.config-sync.syncDir'))) {
-    try {
-      await strapi.plugin('config-sync').service('main').importAllConfig();
-    } catch(error) {
-
-    }
-  }
   const frontPageFi = await strapi.entityService.create('api::front-page.front-page', {
     data: {
       title: 'Etusivu',

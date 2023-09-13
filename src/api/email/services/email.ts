@@ -22,11 +22,7 @@ transporter
   .then(() =>console.log('Mailer setup succesfully'))
   .catch((error) => console.error('Mailer error', error))
 
-type EmailService = {
-  create: (options: Mail.Options) => any;
-}
-
-export default factories.createCoreService<EmailService>('api::email.email',{
+export default factories.createCoreService('api::email.email',{
   create: (options: Mail.Options) => {
     return transporter.sendMail(options);
   },
