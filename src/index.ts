@@ -15,6 +15,5 @@ export default {
    * run jobs, or perform some special logic.
    */
   async bootstrap({ strapi }) {
-    await strapi.plugin('migrations').service('migrations').migrations()
   },
 };

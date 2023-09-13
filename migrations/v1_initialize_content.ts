@@ -1,5 +1,5 @@
 import fs from 'fs'
-module.exports =  async () => {
+export default async () => {
   if (fs.existsSync(strapi.config.get('plugin.config-sync.syncDir'))) {
     try {
       await strapi.plugin('config-sync').service('main').importAllConfig();

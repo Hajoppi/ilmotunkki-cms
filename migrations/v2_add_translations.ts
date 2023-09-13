@@ -1,4 +1,4 @@
-module.exports = async () => {
+export default async () => {
   const translationFi = await strapi.entityService.create('api::translation.translation', {
     data: {
       translations: [
