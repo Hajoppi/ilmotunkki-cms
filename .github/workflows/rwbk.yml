@@ -2,7 +2,7 @@ name: rwbk
 
 on:
   push:
-    branches: rwbk
+    branches: never #Temporarily disabled
 
 jobs:
   build:

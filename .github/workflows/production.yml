@@ -2,7 +2,7 @@ name: production
 
 on:
   push:
-    branches: main
+    branches: never #Temporarily disabled
 
 jobs:
   build:
