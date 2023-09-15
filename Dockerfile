@@ -7,21 +7,21 @@ ENV URL=${URL}
 ENV NODE_ENV=${NODE_ENV}
 WORKDIR /app
 COPY ./package.json .
-COPY ./yarn.lock .
+COPY ./package-lock.json .
 
 ENV PATH /app/node_modules/.bin:$PATH
 
-RUN yarn config set network-timeout 600000 -g && yarn install
+RUN npm install
 
 COPY ./ .
 
 # Build added plugins
 WORKDIR /app/src/plugins/management
-RUN yarn config set network-timeout 600000 -g && yarn install
-RUN yarn build
+RUN npm install
+RUN npm run build
 
 WORKDIR /app
-RUN yarn build
+RUN npm run build
 EXPOSE 1337
 
-CMD ["yarn", "start"]
+CMD ["npm", "start"]

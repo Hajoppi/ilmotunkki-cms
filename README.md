@@ -1,37 +1,39 @@
-# 🚀 Getting started with Strapi
+# Ilmotunkki CMS
 
-Strapi comes with a full featured [Command Line Interface](https://docs.strapi.io/developer-docs/latest/developer-resources/cli/CLI.html) (CLI) which lets you scaffold and manage your project in seconds.
+This is the CMS service of the ilmotunkki
 
-### `develop`
+## Development
+Install dependencies
 
-Start your Strapi application with autoReload enabled. [Learn more](https://docs.strapi.io/developer-docs/latest/developer-resources/cli/CLI.html#strapi-develop)
+`npm install`
 
-```
-npm run develop
-# or
-yarn develop
-```
+Install plugin dependencies
 
-### `start`
+`cd src/plugins/management && npm install`
 
-Start your Strapi application with autoReload disabled. [Learn more](https://docs.strapi.io/developer-docs/latest/developer-resources/cli/CLI.html#strapi-start)
+Build the admin panel plugin
 
-```
-npm run start
-# or
-yarn start
-```
+`cd src/plugins/management && npm run build`
 
-### `build`
+Build the admin panel (in the project root)
 
-Build your admin panel. [Learn more](https://docs.strapi.io/developer-docs/latest/developer-resources/cli/CLI.html#strapi-build)
+`npm install`
 
-```
-npm run build
-# or
-yarn build
-```
+Set the required environment variables in `.env`. You can copy `.env.example` and set the variables. Most can be left as is, but APP_KEYS, SECRETS most the set to some base64 value. Look into [https://docs.strapi.io/dev-docs/configurations/server](https://docs.strapi.io/dev-docs/configurations/server) for more information.
 
-## ⚙️ Deployment
+For the email service to work, the cms defaults to using GMAIL. Set your email and google app password to their respective fields. I do not recommend using your plain normal password for this.
 
-This project is deployed as a docker container
+Import base fields and content
+`npx strapi import -f <export_file_here>.tar.gz` and use the included export The export should not contain any confidential information, but does have remnants of older projects.
+
+Start development mode
+
+`npm run develop`
+
+Create an API token for the next.js service in settings and copy that value to the next.js envs.
+
+## Deployment
+
+Build the dockerfile with the following envs set: `URL=<cms url of path>, NODE_ENV=<production | development>`
+
+When running the image, make use to set the environment variables, similar to development mode, but make sure the values are secret!
