@@ -26,6 +26,9 @@ For the email service to work, the cms defaults to using GMAIL. Set your email a
 Import base fields and content
 `npx strapi import -f <export_file_here>.tar.gz` and use the included export The export should not contain any confidential information, but does have remnants of older projects.
 
+Start local Postgres instance.
+`docker compose up -d`
+
 Start development mode
 
 `npm run develop`
